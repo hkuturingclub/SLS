@@ -19,3 +19,9 @@ h1{
 	text-align: center;
 	margin-top: 60px;
 }
+
+#loading-indicator{
+	position: absolute;
+  left: 49%;
+	top: 50%;
+}

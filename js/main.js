@@ -11,18 +11,26 @@ addMachines = function(machines, machine_type, selector) {
         badge_element.addClass('badge-danger').text('Busy');
     }
     html_element.append(badge_element);
-    
+
     $(selector).append(html_element);
   });
 };
 getLaundryStatus = function() {
-  endpoint_url = 'https://cstc.azurewebsites.net/laundry/status';
+	endpoint_url = 'https://cstc.azurewebsites.net/laundry/status';
   $.get(endpoint_url, function(response) {
     addMachines(response.dryer, 'Dryer', '#dryer_status');
     addMachines(response.washer, 'Washer', '#washer_status');
+  }).done(function(){
+          $("#loading-indicator").hide();
   });
+
 };
 
+addLoadingIndicator = function() {
+ 	$("#loading-indicator").show();
+}
+
 $(function() {
-  getLaundryStatus();
+	addLoadingIndicator();
+	getLaundryStatus();
 });
